@@ -2,17 +2,17 @@
 name: CI
 
 on: 
-  push
+  push:
     branches: [main]
   workflow_dispatch:
 
 jobs:
   build:
-    runs_on: ubuntu_latest_large
+    runs-on: ubuntu_latest
     steps:
       - name: List repository files
-        run: ls-la
+        run: ls -la
       - name: Run the hello script
         run: bash scripts/hello.sh
 
-      - uses: actions/checkout
+      - uses: actions/checkout@v4
