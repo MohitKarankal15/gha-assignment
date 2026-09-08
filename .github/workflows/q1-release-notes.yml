@@ -1,4 +1,3 @@
-
 name: Release Notes
 
 on:
@@ -38,9 +37,6 @@ jobs:
           echo "build_tag=$BUILD_TAG" >> "$GITHUB_OUTPUT"
           echo "build_date=$BUILD_DATE" >> "$GITHUB_OUTPUT"
 
-          echo "Build tag: $BUILD_TAG"
-          echo "Build date: $BUILD_DATE"
-
   announce:
     runs-on: ubuntu-latest
     needs: prepare
@@ -53,13 +49,11 @@ jobs:
 
       - name: Write summary
         run: |
-          {
-            echo "## Release Build Summary"
-            echo
-            echo "| Field | Value |"
-            echo "|---|---|"
-            echo "| Version | ${{ inputs.version }} |"
-            echo "| Release type | ${{ inputs.release_type }} |"
-            echo "| Build tag | ${{ needs.prepare.outputs.build_tag }} |"
-            echo "| Build date | ${{ needs.prepare.outputs.build_date }} |"
-          } >> "$GITHUB_STEP_SUMMARY"
+          echo "## Release Build Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Field | Value |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---|---|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Version | ${{ inputs.version }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Release type | ${{ inputs.release_type }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Build tag | ${{ needs.prepare.outputs.build_tag }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Build date | ${{ needs.prepare.outputs.build_date }} |" >> "$GITHUB_STEP_SUMMARY"
